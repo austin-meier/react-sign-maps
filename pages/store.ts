@@ -9,3 +9,9 @@ export interface MediumCardData {
     title: string;
 }
 
+export interface LargeCardProps {
+    img: string;
+    title: string;
+    description: string;
+    buttonText: string;
+}
