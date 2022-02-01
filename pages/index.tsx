@@ -4,7 +4,7 @@ import Banner from '../components/Banner';
 import Smallcard from '../components/Smallcard';
 import { CardProps } from './store';
 
-export default function Home({exploreData}: CardProps) {
+const Home = ({exploreData}: CardProps) => {
   return (
     <div className="">
       <Head>
@@ -19,12 +19,13 @@ export default function Home({exploreData}: CardProps) {
         <section className='pt-6'>
           <h2 className='text-4xl font-semibold pb-5'>Explore Nearby</h2>
 
-          {/* Pull some data from the server - API endpoints */}
-          {exploreData?.map((item) => (
+          {/* Pull and show card data - API endpoint */}
+          {exploreData?.map(({img, distance, location}) => (
             <Smallcard
-              img={item.img}
-              location={item.location}
-              distance={item.distance}
+              key={img} //Use a back-end key in prod
+              img={img}
+              location={location}
+              distance={distance}
             />
           ))}
         </section>
@@ -45,3 +46,5 @@ export async function getStaticProps() {
     }
   }
 }
+
+export default Home;
