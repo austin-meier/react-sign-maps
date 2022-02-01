@@ -1,18 +1,10 @@
 import Head from 'next/head';
 import Header from '../components/Header';
 import Banner from '../components/Banner';
+import Smallcard from '../components/Smallcard';
+import { CardProps } from './store';
 
-interface ExploreData {
-  img: string;
-  location: string;
-  distance: string;
-}
-
-interface CardProps {
-  exploreData: Array<ExploreData>;
-}
-
-export default function Home({ exploreData }: CardProps) {
+export default function Home({exploreData}: CardProps) {
   return (
     <div className="">
       <Head>
@@ -29,7 +21,11 @@ export default function Home({ exploreData }: CardProps) {
 
           {/* Pull some data from the server - API endpoints */}
           {exploreData?.map((item) => (
-            <h1>{item.location}</h1>
+            <Smallcard
+              img={item.img}
+              location={item.location}
+              distance={item.distance}
+            />
           ))}
         </section>
       </main>
