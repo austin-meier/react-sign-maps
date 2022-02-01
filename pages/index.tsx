@@ -1,10 +1,16 @@
 import Head from 'next/head';
 import Header from '../components/Header';
 import Banner from '../components/Banner';
-import Smallcard from '../components/Smallcard';
-import { CardProps } from './store';
+import SmallCard from '../components/SmallCard';
+import MediumCard from '../components/MediumCard';
+import { SmallCardData, MediumCardData } from './store';
 
-const Home = ({exploreData}: CardProps) => {
+interface HomeProps {
+  smallCardData: Array<SmallCardData>;
+  mediumCardData: Array<MediumCardData>;
+}
+
+const Home = ({smallCardData, mediumCardData}: HomeProps) => {
   return (
     <div className="">
       <Head>
@@ -20,12 +26,26 @@ const Home = ({exploreData}: CardProps) => {
           <h2 className='text-4xl font-semibold pb-5'>Explore Nearby</h2>
 
           {/* Pull and show card data - API endpoint */}
-          {exploreData?.map(({img, distance, location}) => (
-            <Smallcard
-              key={img} //Use a back-end key in prod
+          <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
+            {smallCardData?.map(({img, distance, location}) => (
+              <SmallCard
+                key={img} //Use a back-end key in prod
+                img={img}
+                location={location}
+                distance={distance}
+              />
+            ))}
+          </div>
+        </section>
+
+        <section>
+          <h2 className='text-4xl font-semibold py-8'>Live Anywhere</h2>
+
+          {mediumCardData?.map(({img, title}) => (
+            <MediumCard 
+              key={img}
               img={img}
-              location={location}
-              distance={distance}
+              title={title}
             />
           ))}
         </section>
@@ -35,14 +55,20 @@ const Home = ({exploreData}: CardProps) => {
 }
 
 export async function getStaticProps() {
-  const exploreData: CardProps = await fetch('https://links.papareact.com/pyp').
+  const smallCardData: Array<SmallCardData> = await fetch('https://links.papareact.com/pyp').
+  then(
+    (res) => res.json()
+  );
+
+  const mediumCardData: Array<MediumCardData> = await fetch('https://links.papareact.com/pyp').
   then(
     (res) => res.json()
   );
 
   return {
     props: {
-      exploreData,
+      smallCardData,
+      mediumCardData
     }
   }
 }

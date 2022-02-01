@@ -1,9 +1,11 @@
-export interface ExploreData {
+export interface SmallCardData {
     img: string;
     location: string;
     distance: string;
 }
-  
-export interface CardProps {
-    exploreData: Array<ExploreData>;
+
+export interface MediumCardData {
+    img: string;
+    title: string;
 }
+
