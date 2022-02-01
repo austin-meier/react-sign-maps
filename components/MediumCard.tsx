@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { MediumCardData } from '../pages/store';
+import { MediumCardData } from '../store';
 
 const MediumCard = ({img, title}: MediumCardData) => (
   <div className='cursor-pointer hover:scale-105 transform transition duration-300 ease-out'>

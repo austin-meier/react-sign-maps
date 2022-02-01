@@ -5,7 +5,7 @@ import SmallCard from '../components/SmallCard';
 import MediumCard from '../components/MediumCard';
 import LargeCard from '../components/LargeCard';
 import Footer from '../components/Footer';
-import { SmallCardData, MediumCardData } from './store';
+import { SmallCardData, MediumCardData } from '../store';
 
 interface HomeProps {
   smallCardData: Array<SmallCardData>;

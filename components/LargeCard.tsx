@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { LargeCardProps } from "../pages/store";
+import { LargeCardProps } from "../store";
 
 const LargeCard = ({ img, title, description, buttonText}: LargeCardProps) => (
   <section className="relative py-16 cursor-pointer">

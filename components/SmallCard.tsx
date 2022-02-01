@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { SmallCardData } from '../pages/store';
+import { SmallCardData } from '../store';
 
 
 const SmallCard = ({img, location, distance}: SmallCardData) => (
