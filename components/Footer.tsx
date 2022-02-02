@@ -5,24 +5,28 @@ const Footer = () => (
 
         {/* Column 1 */}
         <FooterColumn 
+            key={0}
             title='ABOUT'
             links={['How Airbnb works', 'Newsroom', 'Investors', 'Airbnb Plus', 'Airbnb Luxe']}
         />
 
         {/* Column 2 */}
         <FooterColumn 
+            key={1}
             title='COMMUNITY'
             links={['Accessibility', 'Forums', 'Careers', 'Referrals', 'Sponsorship']}
         />
 
         {/* Column 3 */}
-        <FooterColumn 
+        <FooterColumn
+            key={2}
             title='HOST'
             links={['Pricing', 'Presents', 'Placeholer', 'Host FAQ', 'Join Now']}
         />
 
         {/* Column 4 */}
         <FooterColumn 
+            key={3}
             title='SUPPORT'
             links={['Help Centre', 'Trust & Safety', 'Hi Mom', 'Easter Egg', 'Legal']}
         />
