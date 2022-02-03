@@ -42,20 +42,23 @@ const Search = ({searchResults}: SearchProps) => {
                         <p className='filter-button'>More Filters</p>
                     </div>
 
-                    {searchResults?.map((item) => (
-                        <InfoCard 
-                            key={item.title}
-                            img={item.img}
-                            location={item.location}
-                            title={item.title}
-                            description={item.description}
-                            star={item.star}
-                            price={item.price}
-                            total={item.total}
-                            long={item.long}
-                            lat={item.lat}
-                        />
-                    ))}
+                    <div className='flex flex-col'>
+                        {searchResults?.map((item) => (
+                            <InfoCard 
+                                key={item.title}
+                                img={item.img}
+                                location={item.location}
+                                title={item.title}
+                                description={item.description}
+                                star={item.star}
+                                price={item.price}
+                                total={item.total}
+                                long={item.long}
+                                lat={item.lat}
+                            />
+                        ))}
+                    </div>
+                    
                 </section>
             </main>
             
