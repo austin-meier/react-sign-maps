@@ -14,9 +14,7 @@ interface SearchProps {
 
 const Search = ({searchResults}: SearchProps) => {
     const router = useRouter();
-
-    console.log(searchResults)
-
+    
     const { location, startDate, endDate, numberOfGuests } = router.query;
     
     const formattedStartDate = format(startDate ? new Date(startDate.toString()) : new Date(), "dd MMMM yy");
@@ -58,7 +56,7 @@ const Search = ({searchResults}: SearchProps) => {
                             />
                         ))}
                     </div>
-                    
+
                 </section>
             </main>
             
