@@ -9,36 +9,54 @@ import { GlobeAltIcon,
 import { DateRangePicker, RangeKeyDict } from 'react-date-range';
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
+import { useRouter } from 'next/router';
 
-const Header = (): JSX.Element => {
+interface HeaderProps {
+    placeholder?: string;
+}
+
+const Header = ({placeholder}: HeaderProps): JSX.Element => {
     const [searchInput, setSearchInput] = useState('');
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(new Date());
     const [numberOfGuests, setNumberOfGuests] = useState(1);
+    const router = useRouter();
 
     const updateSearch = (data: string): void => {
         setSearchInput(data);
-    }
+    };
 
     const resetSearch = (): void => {
         setSearchInput('');
-    }
+    };
 
     const handleSelect = (ranges: RangeKeyDict): void => {
         setStartDate(ranges.selection.startDate ? ranges.selection.startDate : new Date());
         setEndDate(ranges.selection.endDate ? ranges.selection.endDate : new Date());
-    }
+    };
+
+    const search = () => {
+        router.push({
+            pathname: '/search',
+            query: {
+                location: searchInput,
+                startDate: startDate.toISOString(),
+                endDate: endDate.toISOString(),
+                numberOfGuests: numberOfGuests,
+            },
+        });
+    };
 
     const selectionRange = {
         startDate: startDate,
         endDate: endDate,
         key: 'selection'
-    }
+    };
 
     return (
         <header className='sticky top-0 z-50 grid grid-cols-3 bg-white shadow-md p-5 md:px-10'>
             {/* Left - Logo*/}
-            <div className='relative flex items-center h-10 cursor-pointer my-auto'>
+            <div onClick={() => router.push('/')}className='relative flex items-center h-10 cursor-pointer my-auto'>
                 <Image 
                     src='https://links.papareact.com/qd3'
                     layout='fill'
@@ -51,6 +69,7 @@ const Header = (): JSX.Element => {
             <Search 
                 searchInput={searchInput}
                 updateSearch={updateSearch}
+                placeholder={placeholder}
             />
 
             {/* Right */}
@@ -59,7 +78,7 @@ const Header = (): JSX.Element => {
                 <GlobeAltIcon className='hidden md:inline-flex h-6 cursor-pointer'/>
 
                 <div className='flex items-center space-x-2 border-2 p-2 rounded-full cursor-pointer' >
-                    <MenuIcon className='h-6'/>
+                    <MenuIcon className='h-6' />
                     <UserCircleIcon className='h-6' />
                 </div>
             </div>
@@ -88,7 +107,7 @@ const Header = (): JSX.Element => {
 
                     <div className='flex'>
                         <button onClick={resetSearch} className='flex-grow text-grey-500'>Cancel</button>
-                        <button className='flex-grow text-red-400'>Search</button>
+                        <button onClick={search} className='flex-grow text-red-400'>Search</button>
                     </div>
                 </div>
             )}
