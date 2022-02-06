@@ -27,3 +27,9 @@ export interface SearchResult {
     long: number,
     lat: number;
 }
+
+export interface SearchProps {
+    searchResults: [
+        SearchResult
+    ];
+}

@@ -1,16 +1,11 @@
 import { useRouter } from 'next/router';
-import React from 'react';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
-import { format } from 'date-fns';
-import { SearchResult } from '../store'
+import { SearchProps } from '../store'
 import InfoCard from '../components/InfoCard';
+import SearchMap from '../components/SearchMap';
 
-interface SearchProps {
-    searchResults: [
-        SearchResult
-    ];
-}
+import { format } from 'date-fns';
 
 const Search = ({searchResults}: SearchProps) => {
     const router = useRouter();
@@ -24,13 +19,13 @@ const Search = ({searchResults}: SearchProps) => {
 
     return (
         <div>
-            <Header placeholder={`${location || 'New York'} | ${range} | ${numberOfGuests || '1'}`} />
+            <Header placeholder={`${location || 'London'} | ${range} | ${numberOfGuests || '1'}`} />
 
             <main className='flex'>
                 <section className='flex-grow pt-14 px-6'>
                     <p className='text-xs'>300+ stays - {range} - {numberOfGuests || '1'} guests</p>
 
-                    <h1 className='text-3xl font-semibold mt-2 mb-6 '>Stays in {location || 'New York'}</h1>
+                    <h1 className='text-3xl font-semibold mt-2 mb-6 '>Stays in {location || 'London'}</h1>
 
                     <div className='hidden sm:inline-flex select-none mb-5 space-x-3 text-gray-800 whitespace-nowrap'>
                         <p className='filter-button'>Cancellation Flexability</p>
@@ -57,6 +52,11 @@ const Search = ({searchResults}: SearchProps) => {
                         ))}
                     </div>
 
+                </section>
+
+                {/* MapBox */}
+                <section className='hidden xl:inline-flex xl:min-w-[600px]'>
+                    <SearchMap searchResults={searchResults} />
                 </section>
             </main>
             
